@@ -89,3 +89,8 @@ brew install terminal-browser \
   lazygit \
   lazydocker \
   btop
+
+# dejar tmux inicie por defecto
+if command -v tmux >/dev/null && [ -z "$TMUX" ]; then
+    tmux attach || tmux new
+fi
