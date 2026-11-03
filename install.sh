@@ -76,6 +76,9 @@ brew install \
 ya pkg add yazi-rs/plugin:git
 ya pkg add yazi-rs/plugin:diff
 
+# instalar tmux plugin
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 # instalar docker
 sudo dnf install docker docker-compose
 
