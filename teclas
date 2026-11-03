@@ -1,0 +1,10 @@
+[        16:     wl_keyboard] key: serial: 2214; time: 1550505; key: 51; state: 1 (pressed)
+                      sym: braceright   (125), utf8: '}'
+[        16:     wl_keyboard] key: serial: 2215; time: 1550514; key: 51; state: 0 (released)
+                      sym: braceright   (125), utf8: ''
+[        16:     wl_keyboard] key: serial: 2216; time: 1550522; key: 64; state: 0 (released)
+                      sym: Alt_L        (65513), utf8: ''
+[        16:     wl_keyboard] modifiers: serial: 2217; group: 0
+                      depressed: 00000000
+                      latched: 00000000
+                      locked: 00000000
