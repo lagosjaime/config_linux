@@ -99,3 +99,9 @@ brew install terminal-browser \
 if command -v tmux >/dev/null && [ -z "$TMUX" ]; then
     tmux attach || tmux new
 fi
+
+# revisar monitor y resolucion
+swaymsg -t get_outputs
+
+swaymsg output Virtual-1 resolution 2560x1080
+
