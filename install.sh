@@ -11,7 +11,8 @@ sudo dnf install \
   zsh \
   firefox \
   fuzzel \
-  wl-clipboard
+  wl-clipboard \
+  gh
 
 sudo dnf install \
   bat \
@@ -46,6 +47,7 @@ fi
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.zshrc
+sudo dnf group install development-tools
 
 # instalar oh_my_zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
