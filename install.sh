@@ -113,5 +113,8 @@ sudo nvim /etc/systemd/system/getty@tty1.service.d/override.conf
 ExecStart=
 ExecStart=-/sbin/agetty --autologin TU_USUARIO --noclear %I $TERM
 
+# extender disco
+lsblk
 
+sudo lvextend -r -l +100%FREE /dev/mapper/fedora-root
 
