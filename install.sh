@@ -105,3 +105,13 @@ swaymsg -t get_outputs
 
 swaymsg output Virtual-1 resolution 2560x1080
 
+# configurar ingreso directo
+sudo mkdir -p /etc/systemd/system/getty@tty1.service.d
+sudo nvim /etc/systemd/system/getty@tty1.service.d/override.conf
+
+[Service]
+ExecStart=
+ExecStart=-/sbin/agetty --autologin TU_USUARIO --noclear %I $TERM
+
+
+
