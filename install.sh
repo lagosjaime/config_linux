@@ -116,5 +116,8 @@ ExecStart=-/sbin/agetty --autologin TU_USUARIO --noclear %I $TERM
 # extender disco
 lsblk
 
-sudo lvextend -r -l +100%FREE /dev/mapper/fedora-root
+sudo lvextend -r -l +100%FREE /dev/mapper/fedora-root  
+
+# en kitty configurar font
+font_family JetBrainsMono Nerd Font Mono
 
