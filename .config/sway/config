@@ -4,6 +4,8 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+font pango:JetBeansMono Nerd Font 8
+
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -16,12 +18,15 @@ set $right l
 # Your preferred terminal emulator
 set $term kitty
 # Your preferred application launcher
-set $menu wmenu-run
+set $menu wmenu-run -f "JetBeansMono Nerd Font 9"
+#set $menu fuzzel
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+#output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg /home/lagosjaime/Pictures/wallpaper/fondo1.jpg fill
+
 #
 # Example configuration:
 #
@@ -61,7 +66,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # Read `man 5 sway-input` for more information about this section.
 
 input type:keyboard {
-	xkb_layout "latam"
+    xkb_layout "latam"
 }
 
 ### Key bindings
@@ -88,7 +93,16 @@ input type:keyboard {
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'Terminar Sesion y Salir.' -B 'Si Salir' 'systemctl poweroff'
+
+    bindsym $mod+y exec kitty yazi
+    bindsym $mod+t exec kitty tmux
+    bindsym $mod+g exec kitty lazydb
+    bindsym $mod+shift+b exec kitty btop
+    bindsym $mod+shift+g exec kitty lazydocker
+    bindsym $mod+ctrl+g exec kitty lazycurl
+    bindsym $mod+f exec firefox http://localhost:8080
+    bindsym $mod+ctrl+f exec firefox https://github.com/lagosjaime/
 #
 # Moving around:
 #
@@ -155,7 +169,7 @@ input type:keyboard {
     bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+    bindsym $mod+shift+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
