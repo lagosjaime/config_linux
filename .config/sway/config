@@ -98,11 +98,18 @@ input type:keyboard {
     bindsym $mod+y exec kitty yazi
     bindsym $mod+t exec kitty tmux
     bindsym $mod+g exec kitty lazydb
-    bindsym $mod+shift+b exec kitty btop
+    bindsym $mod+shift+b exec kitty --title BTOP btop
     bindsym $mod+shift+g exec kitty lazydocker
     bindsym $mod+ctrl+g exec kitty lazycurl
     bindsym $mod+f exec firefox http://localhost:8080
     bindsym $mod+ctrl+f exec firefox https://github.com/lagosjaime/
+
+    for_window [title="BTOP"] floating enable
+    for_window [title="BTOP"] resize set width 1000 px height 500 px
+    for_window [title="BTOP"] move position center
+    # assign [title="BTOP"] workspace 9
+
+    floating_modifier $mod normal
 #
 # Moving around:
 #
