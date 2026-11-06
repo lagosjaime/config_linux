@@ -93,17 +93,21 @@ input type:keyboard {
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
+    # bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
     bindsym $mod+Shift+e exec swaynag -t warning -m 'Terminar Sesion y Salir.' -B 'Si Salir' 'systemctl poweroff'
 
     bindsym $mod+y exec kitty yazi
     bindsym $mod+t exec kitty tmux
+
     bindsym $mod+g exec kitty lazydb
-    bindsym $mod+shift+b exec kitty --title BTOP btop
     bindsym $mod+shift+g exec kitty lazydocker
     bindsym $mod+ctrl+g exec kitty lazycurl
+    
     bindsym $mod+f exec firefox http://localhost:8080
     bindsym $mod+ctrl+f exec firefox https://github.com/lagosjaime/
+    # bindsym $mod+shift+f exec firefox http://localhost:9090
 
+    bindsym $mod+shift+b exec kitty --title BTOP btop
     for_window [title="BTOP"] floating enable
     for_window [title="BTOP"] resize set width 1000 px height 500 px
     for_window [title="BTOP"] move position center
@@ -176,7 +180,7 @@ input type:keyboard {
     bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
-    bindsym $mod+shift+f fullscreen
+    bindsym $mod+shift+t fullscreen
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
@@ -245,7 +249,7 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+    status_command while date +'%Y-%m-%d %X '; do sleep 1; done
 
     colors {
         statusline #ffffff
