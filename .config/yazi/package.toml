@@ -8,5 +8,15 @@ use = "yazi-rs/plugins:diff"
 rev = "25d992d"
 hash = "14558d2829c0aa05e99c57de8f74d199"
 
+[[plugin.deps]]
+use = "terrakok/split-tabs"
+rev = "d0531f4"
+hash = "4298f0a23f6109a92334eef06fc7ffb9"
+
+[[plugin.deps]]
+use = "tasnimAlam/thumbnail"
+rev = "f4da69d"
+hash = "63fab8f8359dea2df4b6972b1e73463c"
+
 [flavor]
 deps = []

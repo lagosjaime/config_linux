@@ -143,6 +143,7 @@ alias tb="terminal-browser"
 alias ff="fastfetch -c examples/25.jsonc"
 alias c="clear"
 alias t="tmux"
+alias oo="onlyoffice-desktopeditors"
 
 source <(fzf --zsh)
 

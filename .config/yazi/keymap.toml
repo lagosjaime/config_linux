@@ -1,4 +1,5 @@
-[[mgr.prepend_keymap]]
-on = "<C-d"
-run = "plugin diff"
-desc = "Diff the selected with the hovered file"
+[mgr]
+prepend_keymap = [
+    { on = "<C-d>", run = "plugin diff", desc = "Diff the selected with the hovered file" },
+    { on = "<C-t>", run = "plugin thumbnail", desc = "Open current directory in the thumbnail gallery" },
+]

@@ -10,15 +10,21 @@ font pango:JetBeansMono Nerd Font 8
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
+set $opt Mod1
+
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
+
 # Your preferred terminal emulator
 set $term kitty
+
 # Your preferred application launcher
 set $menu wmenu-run -f "JetBeansMono Nerd Font 9"
+
+focus_follows_mouse no
 
 ### Output configuration
 #
@@ -82,8 +88,8 @@ input type:keyboard {
     # Start your launcher
     bindsym $mod+d exec $menu
 
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
+  # Drag floating windows by holding down $mod and left mouse button.
+  # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
     # Change normal to inverse to use left mouse button for resizing and right
     # mouse button for dragging.
@@ -105,9 +111,12 @@ input type:keyboard {
 
     bindsym $mod+f exec firefox http://localhost:8080
     bindsym $mod+ctrl+f exec firefox https://github.com/lagosjaime/
-    # bindsym $mod+shift+f exec firefox http://localhost:9090
 
-    bindsym $mod+shift+b exec kitty --title BTOP btop
+    bindsym ctrl+shift+s exec firefox http://localhost:9090 
+    bindsym ctrl+shift+f exec firefox
+    bindsym ctrl+shift+o exec onlyoffice-desktopeditors
+
+    bindsym $mod+ctrl+asterisk exec kitty --title BTOP btop
     for_window [title="BTOP"] floating enable
     for_window [title="BTOP"] resize set width 1000 px height 500 px
     for_window [title="BTOP"] move position center
@@ -118,7 +127,6 @@ input type:keyboard {
     for_window [title="Keybinds"] resize set width 1000 px height 500 px
     for_window [title="Keybinds"] move position center
 
-    floating_modifier $mod normal
 #
 # Moving around:
 #
@@ -251,16 +259,17 @@ bindsym $mod+r mode "resize"
 # Read `man 5 sway-bar` for more information about this section.
 bar {
     position top
+    swaybar_command waybar
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %X '; do sleep 1; done
-
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
+    # status_command while date +'%Y-%m-%d %X '; do sleep 1; done
+    #
+    # colors {
+    #     statusline #ffffff
+    #     background #323232
+    #     inactive_workspace #32323200 #32323200 #5c5c5c
+    # }
 }
 
 include /etc/sway/config.d/*
