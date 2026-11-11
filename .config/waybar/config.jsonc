@@ -8,7 +8,7 @@
   // Choose the order of the modules
   "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"],
   "modules-center": ["sway/window"],
-  "modules-right": ["network", "cpu", "memory", "clock", "tray"],
+  "modules-right": ["custom/docker", "network", "cpu", "memory", "clock", "tray"],
   // "modules-right": [
   //   "idle_inhibitor",
   //   "pulseaudio",
@@ -205,5 +205,13 @@
       "suspend": "systemctl suspend",
       "hibernate": "systemctl hibernate",
     },
+  },
+  "custom/docker": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "$HOME/.config/waybar/scripts/docker-status.py",
+    "interval": 5,
+    "tooltip": true,
+    "on-click": "$HOME/.config/waybar/scripts/docker-click.sh",
   },
 }
