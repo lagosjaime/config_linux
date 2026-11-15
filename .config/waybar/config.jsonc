@@ -2,13 +2,22 @@
 {
   // "layer": "top", // Waybar at top layer
   // "position": "bottom", // Waybar position (top|bottom|left|right)
-  "height": 20, // Waybar height (to be removed for auto height)
+  "height": 17, // Waybar height (to be removed for auto height)
   // "width": 1280, // Waybar width
   "spacing": 4, // Gaps between modules (4px)
   // Choose the order of the modules
   "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"],
   "modules-center": ["sway/window"],
-  "modules-right": ["custom/docker", "network", "cpu", "memory", "clock", "tray"],
+  "modules-right": [
+    "custom/docker",
+    "custom/vpn",
+    "network",
+    "cpu",
+    "memory",
+    "clock",
+    "tray",
+    "custom/power",
+  ],
   // "modules-right": [
   //   "idle_inhibitor",
   //   "pulseaudio",
@@ -104,6 +113,7 @@
     // "timezone": "America/New_York",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "format": "{:%d-%m-%Y %H:%M}",
+    "format-alt": "{:%d-%m-%Y %H:%M}",
   },
   "cpu": {
     "format": "{usage}% ",
@@ -213,5 +223,13 @@
     "interval": 5,
     "tooltip": true,
     "on-click": "$HOME/.config/waybar/scripts/docker-click.sh",
+  },
+  "custom/vpn": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "$HOME/.config/waybar/scripts/vpn-status.py",
+    "interval": 5,
+    "tooltip": true,
+    "on-click": "$HOME/.config/waybar/scripts/vpn-click.sh",
   },
 }

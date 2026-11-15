@@ -4,7 +4,7 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-font pango:JetBeansMono Nerd Font 8
+font pango:JetBrainsMono Nerd Font Mono 9
 
 ### Variables
 #
@@ -20,9 +20,11 @@ set $right l
 
 # Your preferred terminal emulator
 set $term kitty
+set $browser firefox
 
 # Your preferred application launcher
-set $menu wmenu-run -f "JetBeansMono Nerd Font 9"
+set $menu fuzzel
+# set $menu wmenu-run -f "JetBeansMono Nerd Font 9"
 
 focus_follows_mouse no
 
@@ -30,7 +32,9 @@ focus_follows_mouse no
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg /home/lagosjaime/Pictures/wallpapers/fondo1.jpg fill
+# output * bg /home/lagosjaime/Pictures/wallpaper/fondo1.jpg fill
+output * bg /home/lagosjaime/Pictures/wallpaper/fondo2.webp fill
+
 #
 # Example configuration:
 #
@@ -38,16 +42,16 @@ output * bg /home/lagosjaime/Pictures/wallpapers/fondo1.jpg fill
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
-output Virtual-1 resolution 2560x1080
+output Virtual-1 resolution 1680x1050
 
 ### Idle configuration
 #
 # Example configuration:
 #
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-#          before-sleep 'swaylock -f -c 000000'
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -72,7 +76,7 @@ output Virtual-1 resolution 2560x1080
 # Read `man 5 sway-input` for more information about this section.
 
 input type:keyboard {
-	xkb_layout "latam"
+    xkb_layout "latam"
 }
 
 ### Key bindings
@@ -88,8 +92,8 @@ input type:keyboard {
     # Start your launcher
     bindsym $mod+d exec $menu
 
-  # Drag floating windows by holding down $mod and left mouse button.
-  # Resize them with right mouse button + $mod.
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
     # Change normal to inverse to use left mouse button for resizing and right
     # mouse button for dragging.
@@ -99,32 +103,42 @@ input type:keyboard {
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    # bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'Salir de la MV.' -B 'Si salir' 'systemctl poweroff'
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'Terminar Sesion y Salir.' -B 'Si Salir' 'systemctl poweroff'
 
-    bindsym $mod+y exec kitty yazi
-    bindsym $mod+t exec kitty tmux
+#
+# Aplicaciones:
+#
+    # TUI
+    bindsym $mod+y exec $term yazi
+    bindsym $mod+t exec $term tmux
 
-    bindsym $mod+g exec kitty lazydb
-    bindsym $mod+shift+g exec kitty lazydocker
-    bindsym $mod+ctrl+g exec kitty lazycurl
+    bindsym $mod+g exec $term lazydb
+    bindsym $mod+$opt+g exec $term lazydocker
+    bindsym $mod+ctrl+g exec $term lazycurl
 
-    bindsym $mod+f exec firefox http://localhost:8080
-    bindsym $mod+ctrl+f exec firefox https://github.com/lagosjaime/
+    # Paginas
+    bindsym $mod+f exec $browser https://github.com/lagosjaime/
+    bindsym $mod+ctrl+s exec $browser http://localhost:9090
+    bindsym $mod+$opt+f exec $browser http://localhost:8080
+    bindsym $mod+$opt+c exec $browser https://copilot.com/home
+    
+    # Abrir VLC
+    bindsym ctrl+$opt+v exec vlc
+    # Abrir Handbrake
+    bindsym ctrl+$opt+h exec ghb
+    # Abrir Office
+    bindsym ctrl+$opt+o exec onlyoffice-desktopeditors
 
-    bindsym ctrl+shift+s exec firefox http://localhost:9090 
-    bindsym ctrl+shift+f exec firefox
-    bindsym ctrl+shift+o exec onlyoffice-desktopeditors
-
-    bindsym $mod+ctrl+asterisk exec kitty --title BTOP btop
+    # Ayudas
+    bindsym $mod+ctrl+asterisk exec $term --title BTOP btop
     for_window [title="BTOP"] floating enable
     for_window [title="BTOP"] resize set width 1000 px height 500 px
     for_window [title="BTOP"] move position center
     # assign [title="BTOP"] workspace 9
-
-    bindsym $mod+asterisk exec kitty --title Keybinds /home/lagosjaime/Desarrollo/app/keyhelp/show-keybinds.sh
+    
+    bindsym $mod+asterisk exec $term --title Keybinds /home/lagosjaime/Desarrollo/app/keyhelp/show-keybinds.sh
     for_window [title="Keybinds"] floating enable
-    for_window [title="Keybinds"] resize set width 1000 px height 500 px
+    for_window [title="Keybinds"] resize set width 700 px height 500 px
     for_window [title="Keybinds"] move position center
 
 #
@@ -259,11 +273,11 @@ bindsym $mod+r mode "resize"
 # Read `man 5 sway-bar` for more information about this section.
 bar {
     position top
-    swaybar_command waybar
 
+    swaybar_command waybar
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    # status_command while date +'%Y-%m-%d %X '; do sleep 1; done
+    # status_command while date +'%Y-%m-%d %X'; do sleep 1; done
     #
     # colors {
     #     statusline #ffffff
