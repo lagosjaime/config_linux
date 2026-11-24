@@ -6,6 +6,11 @@
 
 font pango:JetBrainsMono Nerd Font Mono 9
 
+# gaps inner 2 
+# gaps outer 2
+default_border pixel 2
+smart_borders no
+
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -23,8 +28,8 @@ set $term kitty
 set $browser firefox
 
 # Your preferred application launcher
+# set $menu wmenu-run -f "JetBrainsMono Nerd Font Mono 9"
 set $menu fuzzel
-# set $menu wmenu-run -f "JetBeansMono Nerd Font 9"
 
 focus_follows_mouse no
 
@@ -32,9 +37,7 @@ focus_follows_mouse no
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-# output * bg /home/lagosjaime/Pictures/wallpaper/fondo1.jpg fill
-output * bg /home/lagosjaime/Pictures/wallpaper/fondo2.webp fill
-
+output * bg /home/lagosjaime/Pictures/wallpapers/fondo1.jpg fill
 #
 # Example configuration:
 #
@@ -42,16 +45,16 @@ output * bg /home/lagosjaime/Pictures/wallpaper/fondo2.webp fill
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
-output Virtual-1 resolution 1680x1050
+output Virtual-1 resolution 2560x1080
 
 ### Idle configuration
 #
 # Example configuration:
 #
-exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000'
+# exec swayidle -w \
+#          timeout 300 'swaylock -f -c 000000' \
+#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+#          before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -67,7 +70,7 @@ exec swayidle -w \
 #       natural_scroll enabled
 #       middle_emulation enabled
 #   }
-#
+
 #   input type:keyboard {
 #       xkb_layout "eu"
 #   }
@@ -76,7 +79,7 @@ exec swayidle -w \
 # Read `man 5 sway-input` for more information about this section.
 
 input type:keyboard {
-    xkb_layout "latam"
+	xkb_layout "latam"
 }
 
 ### Key bindings
@@ -92,8 +95,8 @@ input type:keyboard {
     # Start your launcher
     bindsym $mod+d exec $menu
 
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
+  # Drag floating windows by holding down $mod and left mouse button.
+  # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
     # Change normal to inverse to use left mouse button for resizing and right
     # mouse button for dragging.
@@ -103,7 +106,8 @@ input type:keyboard {
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'Terminar Sesion y Salir.' -B 'Si Salir' 'systemctl poweroff'
+    # bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'Salir de la MV.' -B 'Si salir' 'systemctl poweroff'
 
 #
 # Aplicaciones:
@@ -135,12 +139,13 @@ input type:keyboard {
     for_window [title="BTOP"] resize set width 1000 px height 500 px
     for_window [title="BTOP"] move position center
     # assign [title="BTOP"] workspace 9
-    
+
     bindsym $mod+asterisk exec $term --title Keybinds /home/lagosjaime/Desarrollo/app/keyhelp/show-keybinds.sh
     for_window [title="Keybinds"] floating enable
     for_window [title="Keybinds"] resize set width 700 px height 500 px
     for_window [title="Keybinds"] move position center
 
+    bindsym $mod+Shift+s exec grim -g "$(slurp)" /home/lagosjaime/Pictures/$(date +%y-%m-%d_%H-%M-%S).png && notify-send "Screenshot Saved"
 #
 # Moving around:
 #
@@ -198,8 +203,8 @@ input type:keyboard {
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+    bindsym $mod+shift+b splith
+    bindsym $mod+shift+v splitv
 
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
@@ -273,11 +278,11 @@ bindsym $mod+r mode "resize"
 # Read `man 5 sway-bar` for more information about this section.
 bar {
     position top
-
     swaybar_command waybar
+
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    # status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+    # status_command while date +'%Y-%m-%d %X '; do sleep 1; done
     #
     # colors {
     #     statusline #ffffff
@@ -287,3 +292,8 @@ bar {
 }
 
 include /etc/sway/config.d/*
+
+
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+exec mako
