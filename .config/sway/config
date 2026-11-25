@@ -145,7 +145,7 @@ input type:keyboard {
     for_window [title="Keybinds"] resize set width 700 px height 500 px
     for_window [title="Keybinds"] move position center
 
-    bindsym $mod+Shift+s exec grim -g "$(slurp)" /home/lagosjaime/Pictures/$(date +%y-%m-%d_%H-%M-%S).png && notify-send "Screenshot Saved"
+    bindsym $mod+Shift+s exec grim -g "$(slurp)" /home/lagosjaime/Pictures/screenshots/$(date +%y-%m-%d_%H-%M-%S).png && notify-send "Screenshot Saved"
 #
 # Moving around:
 #
@@ -293,7 +293,10 @@ bar {
 
 include /etc/sway/config.d/*
 
-
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
-exec mako
+
+# exec mako
+exec swaync
+
+bindsym $mod+Shift+n exec swaync-client -t -sw
